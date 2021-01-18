@@ -88,7 +88,7 @@ free(p);
 
 
 int main(){
-
+printf("revers fun");
 Node* first = creatNode('F');
 first -> father = NULL;
 Node* p = first;
