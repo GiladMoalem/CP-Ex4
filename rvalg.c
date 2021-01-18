@@ -85,7 +85,7 @@ for(i=0;i<26;i++){
 }
 free(p);
 }
-
+//commit
 
 int main(){
 printf("revers fun");
