@@ -61,11 +61,13 @@ for(i=0;i<26;i++){
 }
 }
 
+
+
 void RrecPrint(Node* p){
 int i;
 for(i=26;i>=0;i--){
     if(p -> isCreat[i] == true){
-    	recPrint(p -> child[i]);
+    	RrecPrint(p -> child[i]);
     }
 }
 if(p -> count > 0 && p -> father != NULL){
