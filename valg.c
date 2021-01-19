@@ -49,17 +49,38 @@ if(p -> count > 0 && p -> father != NULL){
     
     t = t -> father;
   }
-  
   revers(word,size);
 printf("%s %d\n", word, p ->count);
 free(word);
-
 }
 int i;
 for(i=0;i<26;i++){
     if(p -> isCreat[i] == true){
     	recPrint(p -> child[i]);	
     }
+}
+}
+
+void RrecPrint(Node* p){
+int i;
+for(i=26;i>=0;i--){
+    if(p -> isCreat[i] == true){
+    	recPrint(p -> child[i]);
+    }
+}
+if(p -> count > 0 && p -> father != NULL){
+	Node* t = p;
+	char* word = (char*)malloc(sizeof(char));
+	int size=0;
+	while(t -> father != NULL){
+		size++;
+		word = (char*)realloc(word, size*sizeof(char));
+		word[size-1] = t -> letter;
+		t = t -> father;
+	}
+	revers(word,size);
+	printf("%s %d\n", word, p ->count);
+	free(word);
 }
 }
 
@@ -89,7 +110,7 @@ for(i=0;i<26;i++){
 free(p);
 }
 
-int main(){
+int main(int argc, char *argv[]){
 
 Node* first = creatNode('F');
 first -> father = NULL;
@@ -117,7 +138,13 @@ while(scanf("%c",&c)!=EOF ){
 }
 p -> count++;//for the last word
 
+if(argc > 1 && argv[1][0] == 'r' && argv[1][1] == '\0'){
+RrecPrint(first);
+}else{
 recPrint(first);
+}
+
+//recPrint(first);
 recFree(first);//free allocs
 
 return 0;
